@@ -1,58 +1,17 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { View, FlatList, StyleSheet } from 'react-native'
 import { Searchbar } from 'react-native-paper';
-import {RestaurantInfoCard, RestaurantInfoProps} from '../components/RestaurantInfo';
+import {RestaurantInfoCard} from '../components/RestaurantInfo';
 import styled from 'styled-components';
-import { bedIcon } from '../../assets/bed';
 import { theme } from '../utils/theme/theme';
+import { restaurantContext } from '../services/restaurants/restaurant.context';
+import { RestaurantCardSkeleton } from '../components/skeleton/RestaurantCard.skeleton';
 const MainSearchBar = styled(Searchbar)`
 background-color:${(props:any)=>props.theme.colors.bg.primary};
 `
 export default function RestaurantScreen() {
   const [searchQuery, setSearchQuery] = React.useState('');
-  const restaurantData: RestaurantInfoProps[] =[
-    { 
-    name : 'Comrades',
-    icon:bedIcon,
-    photo : ['https://lafiestachicago.com/site/wp-content/themes/theme-hollow/img/slide/1.jpg'],
-    address : '5050 Yale St',
-    rating : 5,
-    isOpenNow : true,
-    isClosedTemp:false,
-    cousine:'Mexican',
-    },
-    { 
-    name : 'Alfa',
-    icon:bedIcon,
-    photo : ['https://lafiestachicago.com/site/wp-content/themes/theme-hollow/img/slide/1.jpg'],
-    address : '5050 Yale St',
-    rating : 5,
-    isOpenNow : true,
-    isClosedTemp:false,
-    cousine:'Mexican',
-    },
-    { 
-    name : 'Gyms',
-    icon:bedIcon,
-    photo : ['https://lafiestachicago.com/site/wp-content/themes/theme-hollow/img/slide/1.jpg'],
-    address : '5050 Yale St',
-    rating : 5,
-    isOpenNow : true,
-    isClosedTemp:false,
-    cousine:'Mexican',
-    },
-    { 
-    name : 'Shabiiki',
-    icon:bedIcon,
-    photo : ['https://lafiestachicago.com/site/wp-content/themes/theme-hollow/img/slide/1.jpg'],
-    address : '5050 Yale St',
-    rating : 5,
-    isOpenNow : true,
-    isClosedTemp:false,
-    cousine:'Mexican',
-    },
-  ]
-
+  const {restaurants,isLoading,isError} = useContext(restaurantContext)
   const onChangeSearch = (query: string) => setSearchQuery(query);
   return (
     <View style={styles.container}>
@@ -65,22 +24,29 @@ export default function RestaurantScreen() {
         />
       </View>
     
-    <FlatList
-    data={restaurantData}
+   {isLoading ? 
+   
+   <>
+   <RestaurantCardSkeleton key={1}/>
+   <RestaurantCardSkeleton key={2}/>
+   <RestaurantCardSkeleton key={3}/>
+   </>
+   
+   :
+   <FlatList
+    data={restaurants}
     renderItem = {(item)=><RestaurantInfoCard
-                            name = {item.item.name}
-                            icon={item.item.icon}
-                            photo ={ item.item.photo}
-                            address = {item.item.address}
-                            rating = {item.item.rating}
-                            isOpenNow = {item.item.isOpenNow}
-                            isClosedTemp={item.item.isClosedTemp}
-                            cousine={item.item.cousine}
-                          /> 
+      name={item.item.name}
+      icon={item.item.icon}
+      photos={item.item.photos}
+      vicinity={item.item.vicinity}
+      rating={item.item.rating}
+      opening_hours={item.item.opening_hours}
+      /> 
      }
     contentContainerStyle={{padding:4}}
     keyExtractor={item=>item.name}
-    />
+    />}
     </View>
   )
 }
