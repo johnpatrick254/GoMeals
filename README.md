@@ -122,12 +122,13 @@ Example commands:
 Install this project with:
 
 ```sh
+cd GoMeals
 npm install
 ```
 
 ### Usage
 
-To run the project, start your apache server and execute the following command in root folder:
+To run the project, use:
 
 ```sh
 cd GoMeals
