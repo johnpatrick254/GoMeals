@@ -1,5 +1,5 @@
-import React, { createContext } from 'react';
-import { restaurantRequests } from './restaurant.service';
+import React, { createContext ,useContext} from 'react';
+import { LocationContext } from '../location/location.context';
 export type RestaurantInfo = {
   business_status: string,
   geometry: {
@@ -50,6 +50,8 @@ export const restaurantContext = createContext<RestaurantProviderValue>({
 });
 
 export const RestaurantProvider: React.FC<{ children: React.ReactNode, value:RestaurantProviderValue}> = ({ children, value }) => {
+
+  const locationContext = useContext(LocationContext)
   return (
     <restaurantContext.Provider value={value}>
       {children}
