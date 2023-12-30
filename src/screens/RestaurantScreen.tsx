@@ -2,33 +2,32 @@ import React, { useContext, useEffect } from 'react'
 import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 import { RestaurantInfoCard } from '../components/restaurants/RestaurantInfo';
 import { theme } from '../utils/theme/theme';
-import { restaurantContext } from '../services/restaurants/restaurant.context';
 import { NavigationProp } from "@react-navigation/native";
+import { StatusBar as StatusBarReact,SafeAreaView } from 'react-native';
 import { LocationContext } from '../services/location/location.context';
 import { MainSearchBar } from '../components/restaurants/MainSearchBar';
 import { RestaurantCardSkeleton } from '../components/skeleton/RestaurantCard.skeleton';
 export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }> = ({ navigation }) => {
-  const { restaurants } = useContext(restaurantContext)
-  const { keyword, search, isLoading } = useContext(LocationContext)
+  const { restaurants } = useContext(LocationContext)
+  const {keyword,setKeyWord, isLoading } = useContext(LocationContext)
   const [searchQuery, setSearchQuery] = React.useState(keyword);
   const onChangeSearch = (query: string) => setSearchQuery(query);
-
   useEffect(() => {
-    search(keyword);
+    setSearchQuery(keyword)
   }, [keyword])
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.search}>
         <MainSearchBar
           placeholder={'San Francisco '}
           onChangeText={onChangeSearch}
           value={searchQuery}
           elevation={1}
-          onSubmitEditing={() => search(searchQuery)}
+          onSubmitEditing={() => setKeyWord(searchQuery)}
         />
       </View>
 
-      {isLoading ?
+      {/* {isLoading && !restaurants.length ?
 
         <>
           <RestaurantCardSkeleton key={1} />
@@ -54,9 +53,8 @@ export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }
           }
           contentContainerStyle={{ padding: 4 }}
           keyExtractor={item => item.name}
-          onEndReached={() => search(searchQuery)}
-        />}
-    </View>
+        />} */}
+    </SafeAreaView>
   )
 }
 const styles = StyleSheet.create({
@@ -69,7 +67,9 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     paddingLeft: 10,
     paddingRight: 10,
-    gap: 15
+    gap: 15,
+   paddingTop:StatusBarReact.currentHeight ? StatusBarReact.currentHeight:1
+
   },
   search: {
   },
