@@ -55,12 +55,16 @@ export const RestaurantInfoCard: React.FC<Pick<RestaurantInfo, "name" | "icon" |
     rating,
     opening_hours
 }) => {
-    const ratingStars = Array.from(new Array(Math.floor(+rating)))
+    console.log("Card Rating",rating)
+    const stars =  +rating ?? 1
+
+
+    const ratingStars = Array.from(new Array(Math.ceil(stars)))
 
     return (
         <RestaurantCard
         >
-            <RestaurantCardCover source={{ uri: (photos[0].photo_reference != "") ? photos[0].photo_reference.length : 'https://media.cnn.com/api/v1/images/stellar/prod/230320152734-02-mexican-foods-birria.jpg?c=original&q=h_618,c_fill' }} />
+            {/* <RestaurantCardCover source={{ uri: (photos[0].photo_reference != "") ? photos[0].photo_reference : 'https://media.cnn.com/api/v1/images/stellar/prod/230320152734-02-mexican-foods-birria.jpg?c=original&q=h_618,c_fill' }} />
             <Info>
                 <Title>{name}</Title>
                 <RatingWrapper>
@@ -79,7 +83,7 @@ export const RestaurantInfoCard: React.FC<Pick<RestaurantInfo, "name" | "icon" |
                     </Rating>
                 </RatingWrapper>
                 <Address>{vicinity}</Address>
-            </Info>
+            </Info> */}
         </RestaurantCard>
 
     )
