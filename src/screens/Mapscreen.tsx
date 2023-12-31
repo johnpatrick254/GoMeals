@@ -9,8 +9,7 @@ import { Map } from '../components/map/Map';
 import { restaurantContext } from '../services/restaurants/restaurant.context';
 
 export default function MapScreen() {
-  const { setKeyWord,keyword, viewPort } = useContext(LocationContext);
-  const { restaurants } = useContext(restaurantContext)
+  const { setKeyWord,keyword, viewPort,restaurants} = useContext(LocationContext);
   const [searchQuery, setSearchQuery] = React.useState(keyword);
   const [mapLoaded, setMapLoaded] = React.useState(true);
   const [latDelta, setLatDelta] = React.useState(0);

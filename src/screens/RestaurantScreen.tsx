@@ -3,13 +3,12 @@ import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 import { RestaurantInfoCard } from '../components/restaurants/RestaurantInfo';
 import { theme } from '../utils/theme/theme';
 import { NavigationProp } from "@react-navigation/native";
-import { StatusBar as StatusBarReact,SafeAreaView } from 'react-native';
+import { StatusBar as StatusBarReact, SafeAreaView } from 'react-native';
 import { LocationContext } from '../services/location/location.context';
 import { MainSearchBar } from '../components/restaurants/MainSearchBar';
 import { RestaurantCardSkeleton } from '../components/skeleton/RestaurantCard.skeleton';
 export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }> = ({ navigation }) => {
-  const { restaurants } = useContext(LocationContext)
-  const {keyword,setKeyWord, isLoading } = useContext(LocationContext)
+  const { keyword, setKeyWord, isLoading, restaurants } = useContext(LocationContext)
   const [searchQuery, setSearchQuery] = React.useState(keyword);
   const onChangeSearch = (query: string) => setSearchQuery(query);
   useEffect(() => {
@@ -27,7 +26,7 @@ export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }
         />
       </View>
 
-      {/* {isLoading && !restaurants.length ?
+      {isLoading ?
 
         <>
           <RestaurantCardSkeleton key={1} />
@@ -39,7 +38,7 @@ export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }
         <FlatList
           data={restaurants}
           renderItem={(item) =>
-            <TouchableOpacity onPress={() => navigation.navigate('Details',  [item.item.name,item.item.icon, item.item.photos,item.item.vicinity,item.item.rating,item.item.opening_hours])}>
+            <TouchableOpacity onPress={() => navigation.navigate('Details', [item.item.name, item.item.icon, item.item.photos, item.item.vicinity, item.item.rating, item.item.opening_hours])}>
               <RestaurantInfoCard
                 name={item.item.name}
                 icon={item.item.icon}
@@ -53,7 +52,7 @@ export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }
           }
           contentContainerStyle={{ padding: 4 }}
           keyExtractor={item => item.name}
-        />} */}
+        />}
     </SafeAreaView>
   )
 }
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     gap: 15,
-   paddingTop:StatusBarReact.currentHeight ? StatusBarReact.currentHeight:1
+    paddingTop: StatusBarReact.currentHeight ? StatusBarReact.currentHeight : 1
 
   },
   search: {

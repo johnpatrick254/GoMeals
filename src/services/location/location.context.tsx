@@ -58,7 +58,7 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     })
     const onSearch = (kw: string) => {
         const keyWord = kw.trim().toLowerCase()
-              
+        setIsLoading(true);
         let cords;
         switch (keyWord) {
             case ('san francisco'):
@@ -81,6 +81,7 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         restaurantRequests(cords).then(data => {
 
             setRestaurants(data.results)
+
         }).catch(e => console.log(e))
         locationRequest(cords).then((data: any) => {
             const lat = data.results[0].geometry.location.lat;
@@ -101,8 +102,7 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     useEffect(() => {
         onSearch(keyword)
-        console.log(restaurants[0]?.name);
-        
+         
     }, [keyword])
       return <LocationContext.Provider value={{ location, keyword, isLoading, error, setLoading, setKeyWord: setSearchWord, viewPort, restaurants }}>
         {children}

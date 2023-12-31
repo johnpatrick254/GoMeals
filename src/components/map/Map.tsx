@@ -14,6 +14,7 @@ type Region = {
     longitudeDelta: number,
 }
 export const Map: React.FC<{ restaurants: RestaurantInfo[], region: Region, setMapLoaded: () => void }> = ({ setMapLoaded, restaurants, region }) => {
+    console.log(restaurants[0].name)
     return <MapCard
         onMapReady={() => setMapLoaded()}
         region={region}
