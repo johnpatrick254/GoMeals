@@ -1,15 +1,14 @@
 import React, { useContext, useEffect } from 'react'
-import MapView from 'react-native-maps';
 import { View, StyleSheet } from 'react-native'
 import { LocationContext } from '../services/location/location.context'
 import { theme } from '../utils/theme/theme'
 import { MainSearchBar } from '../components/restaurants/MainSearchBar'
 import { MapSkeleton } from '../components/skeleton/Map.skeleton';
 import { Map } from '../components/map/Map';
-import { restaurantContext } from '../services/restaurants/restaurant.context';
+import { NavigationProp } from "@react-navigation/native";
 
-export default function MapScreen() {
-  const { setKeyWord,keyword, viewPort,restaurants} = useContext(LocationContext);
+const MapScreen:React.FC<{navigation: NavigationProp<any, any>}>=({navigation}) =>{
+  const { setKeyWord,keyword, isLoading,viewPort,restaurants} = useContext(LocationContext);
   const [searchQuery, setSearchQuery] = React.useState(keyword);
   const [mapLoaded, setMapLoaded] = React.useState(true);
   const [latDelta, setLatDelta] = React.useState(0);
@@ -40,11 +39,12 @@ export default function MapScreen() {
         icon='map'
       />
     </View >
-    {mapLoaded
+    {mapLoaded && !isLoading
       ?
       <Map
         setMapLoaded={() => setMapLoaded(true)}
         restaurants={restaurants}
+        navigation={navigation}
        region={
         {
           latitude:viewPort.location.lat,
@@ -88,3 +88,4 @@ const styles = StyleSheet.create({
     fontSize: 25,
   }
 })
+export default MapScreen;
