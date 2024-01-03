@@ -1,6 +1,5 @@
-import { View } from "react-native"
 import styled from "styled-components"
-import { RestaurantInfo } from "../services/restaurants/restaurant.context"
+import { RestaurantInfo } from "../utils/types/restaurant.type"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { theme } from "../utils/theme/theme"
 import { NavigationProp } from "@react-navigation/native";
@@ -34,7 +33,8 @@ export const RestaurantDetailScreen: React.FC<{navigation: NavigationProp<any, a
             rating={rating}
             opening_hours={opening_hours}
         />
-        <DetailsMenu/>
+        <DetailsMenu
+        />
     </DetailsContainer>
 
 }

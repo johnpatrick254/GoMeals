@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useContext, useState } from "react";
 import { locationRequest } from "./location.service";
-import { RestaurantInfo, restaurantContext } from "../restaurants/restaurant.context";
+import { RestaurantInfo } from "../../utils/types/restaurant.type";
 import { restaurantRequests } from "../restaurants/restaurant.service";
 
 export type ViewPort = {

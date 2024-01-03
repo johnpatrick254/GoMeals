@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 import star from '../../../assets/star';
 import open from '../../../assets/open';
 import { SvgXml } from 'react-native-svg';
-import { RestaurantInfo } from '../../services/restaurants/restaurant.context';
+import { RestaurantInfo } from '../../utils/types/restaurant.type';
 
 const Title = styled.Text`
 color:${(props: any) => props.theme.colors.ui.primary};
