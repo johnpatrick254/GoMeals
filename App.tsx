@@ -9,10 +9,30 @@ import { Lato_400Regular } from '@expo-google-fonts/lato';
 import Navigator from './src/components/navigation/Navigator';
 import { LocationProvider } from './src/services/location/location.context';
 import { FavoriteProvider } from './src/services/favourites/favourite.context';
+import { initializeApp, getApps } from 'firebase/app';
 
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useContext, useEffect } from 'react';
+import { AuthContext, AuthProvider } from './src/services/auth/auth.context';
+// Optionally import the services that you want to use
+// import {...} from "firebase/database";
+// import {...} from "firebase/firestore";
+// import {...} from "firebase/functions";
+// import {...} from "firebase/storage";
+
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyDNCfEO2K9sR_tjfxegQ_TUX2FcxVOAyvg",
+  authDomain: "go-meals-1b235.firebaseapp.com",
+  projectId: "go-meals-1b235",
+  storageBucket: "go-meals-1b235.appspot.com",
+  messagingSenderId: "131596693364",
+  appId: "1:131596693364:web:55f6d42e76727e1faf0621"
+};
+
+if (!getApps().length) initializeApp(firebaseConfig);
 
 export default function App() {
-
   const [oswaldReady] = useFonts({ 'Oswald_400Regular': Oswald_400Regular });
   const [latoReady] = useFonts({ 'Lato_400Regular': Lato_400Regular });
   if (!oswaldReady || !latoReady) return null;
@@ -24,15 +44,17 @@ export default function App() {
     justifyContent: 'center';
     `
   return <>
-    <LocationProvider>
-      <FavoriteProvider>
-        <ThemeProvider theme={theme}>
-          <SafeArea >
-            <Navigator />
-          </SafeArea>
-        </ThemeProvider>
-        <StatusBar style="auto" />
-      </FavoriteProvider>
-    </LocationProvider>
+    <AuthProvider>
+      <LocationProvider>
+        <FavoriteProvider>
+          <ThemeProvider theme={theme}>
+            <SafeArea >
+              <Navigator />
+            </SafeArea>
+          </ThemeProvider>
+          <StatusBar style="auto" />
+        </FavoriteProvider>
+      </LocationProvider>
+    </AuthProvider>
   </>;
 }
