@@ -20,7 +20,6 @@ export const DetailsMenu: React.FC = () => {
                     <>
                         <Icon name={'bread-slice'} type="material-community" style={{ paddingRight: 15 }} size={30} />
                         <ListItem.Content
-
                         >
                             <ListItem.Title
                             >Break First</ListItem.Title>
@@ -61,16 +60,16 @@ export const DetailsMenu: React.FC = () => {
                 }}
             >
                 {lunch.map((l, i) => (
-                     <ListItem key={i}
-                     style={{ paddingLeft: 45 }}
+                    <ListItem key={i}
+                        style={{ paddingLeft: 45 }}
 
-                 >
+                    >
 
 
-                     <Text>${l.price}</Text>
-                     <Text>{l.name}</Text>
+                        <Text>${l.price}</Text>
+                        <Text>{l.name}</Text>
 
-                 </ListItem>
+                    </ListItem>
                 ))}
             </ListItem.Accordion>
             <ListItem.Accordion
@@ -90,16 +89,16 @@ export const DetailsMenu: React.FC = () => {
                 }}
             >
                 {dinner.map((l, i) => (
-                             <ListItem key={i}
-                             style={{ paddingLeft: 45 }}
-     
-                         >
-     
-     
-                             <Text>${l.price}</Text>
-                             <Text>{l.name}</Text>
-     
-                         </ListItem>
+                    <ListItem key={i}
+                        style={{ paddingLeft: 45 }}
+
+                    >
+
+
+                        <Text>${l.price}</Text>
+                        <Text>{l.name}</Text>
+
+                    </ListItem>
                 ))}
             </ListItem.Accordion>
         </ScrollView>

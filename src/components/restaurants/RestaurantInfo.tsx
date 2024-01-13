@@ -6,8 +6,9 @@ import star from '../../../assets/star';
 import open from '../../../assets/open';
 import { SvgXml } from 'react-native-svg';
 import { RestaurantInfo } from '../../utils/types/restaurant.type';
+import { Favorite } from './Favorite';
 
-const Title = styled.Text`
+export const Title = styled.Text`
 color:${(props: any) => props.theme.colors.ui.primary};
 font-size:${(props: any) => props.theme.fontSizes.title};
 font-weight:${(props: any) => props.theme.fontWeights.bold};
@@ -22,9 +23,11 @@ export const RestaurantCard = styled(Card)`
 background-color:${(props: any) => props.theme.colors.bg.primary};
 padding:${(props: any) => props.theme.sizes[0]};
 margin-bottom:${(props: any) => props.theme.sizes[1]};
+position:relative;
 `
 const RestaurantCardCover = styled(Card.Cover)`
 background-color:#fff;
+position:relative;
 `
 const Info = styled(View)`
 padding:${(props: any) => props.theme.sizes[0]};
@@ -55,12 +58,24 @@ export const RestaurantInfoCard: React.FC<Pick<RestaurantInfo, "name" | "icon" |
     rating,
     opening_hours
 }) => {
-    const stars =  +rating ?? 1
+    const stars = +rating ?? 1
     const ratingStars = Array.from(new Array(Math.ceil(stars)))
 
     return (
         <RestaurantCard
         >
+            <Favorite
+                rest={
+                    {
+                        name,
+                        icon,
+                        photos,
+                        vicinity,
+                        rating,
+                        opening_hours
+                    }
+                }
+            />
             <RestaurantCardCover source={{ uri: (photos[0].photo_reference != "") ? photos[0].photo_reference : 'https://media.cnn.com/api/v1/images/stellar/prod/230320152734-02-mexican-foods-birria.jpg?c=original&q=h_618,c_fill' }} />
             <Info>
                 <Title>{name}</Title>
@@ -74,12 +89,13 @@ export const RestaurantInfoCard: React.FC<Pick<RestaurantInfo, "name" | "icon" |
                     </Rating>
                     <Rating style={{ gap: 10 }}>
                         {
-                          opening_hours &&  (opening_hours.open_now) ? <SvgXml xml={open} width={20} height={20} /> : <IsClosed>TEMPORARILY CLOSED</IsClosed>
+                            opening_hours && (opening_hours.open_now) ? <SvgXml xml={open} width={20} height={20} /> : <IsClosed>TEMPORARILY CLOSED</IsClosed>
                         }
                         <Icon source={{ uri: icon }} />
                     </Rating>
                 </RatingWrapper>
                 <Address>{vicinity}</Address>
+
             </Info>
         </RestaurantCard>
 

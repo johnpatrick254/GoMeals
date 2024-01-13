@@ -7,9 +7,13 @@ import { StatusBar as StatusBarReact, SafeAreaView } from 'react-native';
 import { LocationContext } from '../services/location/location.context';
 import { MainSearchBar } from '../components/restaurants/MainSearchBar';
 import { RestaurantCardSkeleton } from '../components/skeleton/RestaurantCard.skeleton';
+import { FavoriteBar } from '../components/restaurants/FavouritesBar';
+import { FavoriteContext } from '../services/favourites/favourite.context';
 export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }> = ({ navigation }) => {
   const { keyword, setKeyWord, isLoading, restaurants } = useContext(LocationContext)
+  const { favorites} = useContext(FavoriteContext)
   const [searchQuery, setSearchQuery] = React.useState(keyword);
+  const [showFavorites, setShowFavorites] = React.useState(false);
   const onChangeSearch = (query: string) => setSearchQuery(query);
   useEffect(() => {
     setSearchQuery(keyword)
@@ -21,11 +25,13 @@ export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }
           placeholder={'San Francisco '}
           onChangeText={onChangeSearch}
           value={searchQuery}
+          icon={showFavorites ? "heart":"heart-outline"}
+          onIconPress={()=>{setShowFavorites(!showFavorites)}}
           elevation={1}
           onSubmitEditing={() => setKeyWord(searchQuery)}
         />
       </View>
-
+        {showFavorites && <FavoriteBar navigation={navigation} rest={favorites}/>}
       {isLoading ?
 
         <>
