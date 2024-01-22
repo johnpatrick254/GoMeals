@@ -16,14 +16,7 @@ import { AuthProvider } from './src/services/auth/auth.context';
 
 
 // Initialize Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyDNCfEO2K9sR_tjfxegQ_TUX2FcxVOAyvg",
-  authDomain: "go-meals-1b235.firebaseapp.com",
-  projectId: "go-meals-1b235",
-  storageBucket: "go-meals-1b235.appspot.com",
-  messagingSenderId: "131596693364",
-  appId: "1:131596693364:web:55f6d42e76727e1faf0621"
-};
+
 
 if (!getApps().length) {
   const app = initializeApp(firebaseConfig);
