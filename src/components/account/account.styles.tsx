@@ -59,6 +59,7 @@ export const ErrorContainer = styled(View)`
 export const AnimationWrapper = styled(View)`
   width: 100%;
   height: 40%;
+  z-index:70;
   position: absolute;
   top: 30px;
   padding: ${(props: { theme: { space: any[]; }; }) => props.theme.space[2]};
