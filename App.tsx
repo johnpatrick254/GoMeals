@@ -10,15 +10,10 @@ import Navigator from './src/components/navigation/Navigator';
 import { LocationProvider } from './src/services/location/location.context';
 import { FavoriteProvider } from './src/services/favourites/favourite.context';
 import { initializeApp, getApps } from 'firebase/app';
+import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
+import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
+import { AuthProvider } from './src/services/auth/auth.context';
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useContext, useEffect } from 'react';
-import { AuthContext, AuthProvider } from './src/services/auth/auth.context';
-// Optionally import the services that you want to use
-// import {...} from "firebase/database";
-// import {...} from "firebase/firestore";
-// import {...} from "firebase/functions";
-// import {...} from "firebase/storage";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -30,7 +25,12 @@ const firebaseConfig = {
   appId: "1:131596693364:web:55f6d42e76727e1faf0621"
 };
 
-if (!getApps().length) initializeApp(firebaseConfig);
+if (!getApps().length) {
+  const app = initializeApp(firebaseConfig);
+  initializeAuth(app, {
+    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+  });
+}
 
 export default function App() {
   const [oswaldReady] = useFonts({ 'Oswald_400Regular': Oswald_400Regular });
