@@ -28,7 +28,6 @@ export const SignUpScreen: React.FC = () => {
             setLoading(true);
             const user = await signUp(email, password);
             if (user) setIsAuthenticated(true);
-            console.log(user);
             setLoading(false);
         } catch (error: any) {
             setLoading(false);

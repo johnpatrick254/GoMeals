@@ -18,7 +18,6 @@ export const SignInScreen: React.FC = () => {
       setLoading(true);
       const user = await signIn(email, password);
       if (user) setIsAuthenticated(true);
-      console.log(user);
       setLoading(false);
     } catch (error: any) {
       setLoading(false);
@@ -33,7 +32,6 @@ export const SignInScreen: React.FC = () => {
       <AccountContainer>
         <Title>Go Meals</Title>
         <AuthInput
-          textContentType='emailAddress'
           label='E-mail'
           autoCapitalize="none"
           keyboardType='email-address'

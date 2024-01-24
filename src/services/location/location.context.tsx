@@ -89,7 +89,6 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
             setViewPort({ ...data.results[0].geometry.viewport, location: { ...data.results[0].geometry.location } });
             setTimeout(() => setIsLoading(false), 1500);
             setLocation(`${lat} ${long}`)
-            console.log(viewPort)
             return data;
         }).catch(e => {
             console.log("LOCATION ERROR:", e, " FOR:", kw)

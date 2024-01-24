@@ -6,10 +6,10 @@ import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { theme } from '../../utils/theme/theme';
 import MapScreen from '../../screens/Mapscreen';
-import SettingScreen from '../../screens/SettingScreen';
 import { RestaurantNavigator } from './restaurant.navigator';
 import { AuthContext } from '../../services/auth/auth.context';
 import { AuthNavigator } from './authnavigator';
+import { SettingsNavigator } from './settingsnaviagtor';
 
 
 const Tab = createBottomTabNavigator();
@@ -32,7 +32,7 @@ export default function Navigator() {
                     }}>
                         <Tab.Screen name="Restaurants" component={RestaurantNavigator} options={{ headerShown: false, tabBarIcon: ({ focused }) => <Ionicons name="fast-food-outline" size={22} color={focused ? "orange" : "black"} /> }} />
                         <Tab.Screen name="Map" component={MapScreen} options={{ headerShown: false, tabBarIcon: ({ focused }) => <FontAwesome5 name="map-marked-alt" size={22} color={focused ? "orange" : "black"} /> }} />
-                        <Tab.Screen name="Settings" component={SettingScreen} options={{ headerShown: false, tabBarIcon: ({ focused }) => <Feather name="settings" size={22} color={focused ? "orange" : "black"} /> }} />
+                        <Tab.Screen name="Setting" component={SettingsNavigator} options={{ headerShown: false, tabBarIcon: ({ focused }) => <Feather name="settings" size={22} color={focused ? "orange" : "black"} /> }} />
                     </Tab.Navigator>
                     :
                     <AuthNavigator />
