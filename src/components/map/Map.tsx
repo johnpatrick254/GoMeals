@@ -1,10 +1,8 @@
 import MapView, { Marker, Callout } from 'react-native-maps';
 import styled from 'styled-components';
 import { RestaurantInfo } from '../../utils/types/restaurant.type';
-import { Image, View } from 'react-native';
+import {  View } from 'react-native';
 import { NavigationProp } from "@react-navigation/native";
-import { Text } from 'react-native-paper';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { RestMiniCard } from '../restaurants/MiniCard';
 
 const MapCard = styled(MapView)`
@@ -22,7 +20,6 @@ type Region = {
     longitudeDelta: number,
 }
 export const Map: React.FC<{ restaurants: RestaurantInfo[], region: Region, setMapLoaded: () => void, navigation: NavigationProp<any, any> }> = ({ setMapLoaded, restaurants, region, navigation }) => {
-    console.log(restaurants[0].name)
     return <MapCard
         onMapReady={() => setMapLoaded()}
         region={region}

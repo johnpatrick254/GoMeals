@@ -9,9 +9,10 @@ import { MainSearchBar } from '../components/restaurants/MainSearchBar';
 import { RestaurantCardSkeleton } from '../components/skeleton/RestaurantCard.skeleton';
 import { FavoriteBar } from '../components/restaurants/FavouritesBar';
 import { FavoriteContext } from '../services/favourites/favourite.context';
+import { FadeInView } from '../components/shared/FadeInView';
 export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }> = ({ navigation }) => {
   const { keyword, setKeyWord, isLoading, restaurants } = useContext(LocationContext)
-  const { favorites} = useContext(FavoriteContext)
+  const { favorites } = useContext(FavoriteContext)
   const [searchQuery, setSearchQuery] = React.useState(keyword);
   const [showFavorites, setShowFavorites] = React.useState(false);
   const onChangeSearch = (query: string) => setSearchQuery(query);
@@ -25,13 +26,13 @@ export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }
           placeholder={'San Francisco '}
           onChangeText={onChangeSearch}
           value={searchQuery}
-          icon={showFavorites ? "heart":"heart-outline"}
-          onIconPress={()=>{setShowFavorites(!showFavorites)}}
+          icon={showFavorites ? "heart" : "heart-outline"}
+          onIconPress={() => { setShowFavorites(!showFavorites) }}
           elevation={1}
           onSubmitEditing={() => setKeyWord(searchQuery)}
         />
       </View>
-        {showFavorites && <FavoriteBar navigation={navigation} rest={favorites}/>}
+      {showFavorites && <FavoriteBar navigation={navigation} rest={favorites} />}
       {isLoading ?
 
         <>
@@ -44,16 +45,18 @@ export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }
         <FlatList
           data={restaurants}
           renderItem={(item) =>
-            <TouchableOpacity onPress={() => navigation.navigate('Details', [item.item.name, item.item.icon, item.item.photos, item.item.vicinity, item.item.rating, item.item.opening_hours])}>
-              <RestaurantInfoCard
-                name={item.item.name}
-                icon={item.item.icon}
-                photos={item.item.photos}
-                vicinity={item.item.vicinity}
-                rating={item.item.rating}
-                opening_hours={item.item.opening_hours}
-              />
-            </TouchableOpacity>
+            <FadeInView>
+              <TouchableOpacity onPress={() => navigation.navigate('Details', [item.item.name, item.item.icon, item.item.photos, item.item.vicinity, item.item.rating, item.item.opening_hours])}>
+                <RestaurantInfoCard
+                  name={item.item.name}
+                  icon={item.item.icon}
+                  photos={item.item.photos}
+                  vicinity={item.item.vicinity}
+                  rating={item.item.rating}
+                  opening_hours={item.item.opening_hours}
+                />
+              </TouchableOpacity>
+            </FadeInView>
 
           }
           contentContainerStyle={{ padding: 4 }}
