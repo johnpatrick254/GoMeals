@@ -26,8 +26,6 @@ export const Favorite: React.FC<{ rest:Pick<RestaurantInfo, "name" | "icon" | "p
         };
     }
     useEffect(() => {
-        console.log(favorites);
-        
         setStarred(favorites.some(restaurant => restaurant.name == rest.name));
     }, [favorites])
     return <Container>
