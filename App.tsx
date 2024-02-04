@@ -18,7 +18,6 @@ import { StripeProvider } from '@stripe/stripe-react-native';
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyDNCfEO2K9sR_tjfxegQ_TUX2FcxVOAyvg",
   authDomain: "go-meals-1b235.firebaseapp.com",
   projectId: "go-meals-1b235",
   storageBucket: "go-meals-1b235.appspot.com",
