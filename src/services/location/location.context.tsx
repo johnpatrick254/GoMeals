@@ -59,51 +59,33 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const onSearch = (kw: string) => {
         const keyWord = kw.trim().toLowerCase()
         setIsLoading(true);
-        let cords;
-        switch (keyWord) {
-            case ('san francisco'):
-                cords = "37.7829132,-122.4188995"
-                break;
-            case 'antwerp':
-                cords = "51.219448,4.402464"
-                break;
-            case 'toronto':
-                cords = "43.653225,-79.383186"
-                break;
-            case 'chicago':
-                cords = "41.878113,-87.629799"
-                break;
-            default:
-                cords = "37.7829132,-122.4188995"
-                console.log("keyword not found:", keyWord)
-                break;
-        }
-        restaurantRequests(cords).then(data => {
 
-            setRestaurants(data.results)
+        restaurantRequests(keyWord).then(data => {
+            locationRequest(data).then((data: any) => {
+                setRestaurants(data)
+                const lat = data[0].geometry.location.lat;
+                const long = data[0].geometry.location.lng;
+                setViewPort({ ...data[0].geometry.viewport, location: { ...data[0].geometry.location } });
+                setIsLoading(false)
+                setLocation(`${lat} ${long}`)
+                return data;
+            }).catch(e => {
+                console.log("LOCATION ERROR:", e, " FOR:", kw)
+                setIsLoading(false)
+                setError(e)
+            })
 
         }).catch(e => console.log(e))
-        locationRequest(cords).then((data: any) => {
-            const lat = data.results[0].geometry.location.lat;
-            const long = data.results[0].geometry.location.lng;
-            setViewPort({ ...data.results[0].geometry.viewport, location: { ...data.results[0].geometry.location } });
-            setTimeout(() => setIsLoading(false), 1500);
-            setLocation(`${lat} ${long}`)
-            return data;
-        }).catch(e => {
-            console.log("LOCATION ERROR:", e, " FOR:", kw)
-            setTimeout(() => setIsLoading(false), 1500);
-            setError(e)
-        })
+        
     }
     const setLoading = (status: boolean) => setIsLoading(status)
     const setSearchWord = (kw: string) => setKeyWord(kw.trim().toLowerCase())
 
     useEffect(() => {
         onSearch(keyword)
-         
+
     }, [keyword])
-      return <LocationContext.Provider value={{ location, keyword, isLoading, error, setLoading, setKeyWord: setSearchWord, viewPort, restaurants }}>
+    return <LocationContext.Provider value={{ location, keyword, isLoading, error, setLoading, setKeyWord: setSearchWord, viewPort, restaurants }}>
         {children}
     </LocationContext.Provider>
 }

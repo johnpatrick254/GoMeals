@@ -3,6 +3,7 @@ import { Button, MD3Theme, Text, TextInput, useTheme } from "react-native-paper"
 import { colors } from "../../utils/styles/colors";
 import { View } from "react-native";
 import { theme } from "../../utils/theme/theme";
+import React from "react";
 
 export const AccountCover = styled(View)`
   position: absolute;
@@ -31,7 +32,16 @@ export const AuthButton = styled(Button).attrs({
   color: colors.brand.primary,
 })`
 padding: ${(props: { theme: { space: any[]; }; }) => props.theme.space[2]};
-width: 250px;
+width: 100%;
+margin:6px 0;
+
+`;
+export const CartButton = styled(Button).attrs({
+  color: colors.brand.primary,
+})`
+padding:2px 6px;
+width: max-content;
+margin-left:auto;
 
 `;
 
@@ -91,7 +101,7 @@ const SpacerView = styled(View)`
     ${({ variant }) => variant};
   `;
 
-export const Spacer = ({ position, size, children }) => {
+export const Spacer = ({ position, size, children=null }) => {
 
   const variant = getVariant(position, size, theme);
   return <SpacerView variant={variant}> {children} </SpacerView>

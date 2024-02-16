@@ -9,7 +9,7 @@ import { RestaurantNavigator } from './restaurant.navigator';
 import { AuthContext } from '../../services/auth/auth.context';
 import { AuthNavigator } from './authnavigator';
 import { SettingsNavigator } from './settingsnaviagtor';
-import CheckoutScreen from '../../screens/CheckoutScreen';
+import {CheckoutScreen} from '../../screens/CheckoutScreen';
 
 
 const Tab = createBottomTabNavigator();

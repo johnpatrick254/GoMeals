@@ -1,11 +1,15 @@
-
-import { mocksCities } from "../../utils/mock";
+import axios from "axios"
 import { RestaurantInfo } from "../../utils/types/restaurant.type";
 
-export const restaurantRequests =(location:string="37.7749295,-122.4194155"):Promise<{results:RestaurantInfo[]}>=>{
- return new Promise((res,rej)=>{
-    const mock = (mocksCities as any)[location]
-    if(!mock) rej("Location no found");
-    res((mock as {results:RestaurantInfo[]}));
- })
+export const restaurantRequests = async (city: string): Promise<string> => {
+   try {
+      const apiUrl = ` https://geocode-l5kow75jdq-uc.a.run.app?city=${city}`;
+      const results = (await axios.get(apiUrl)).data
+      // console.log("LOCATION COORDS:", results)
+      return results;
+   } catch (error: any) {
+      console.log("LOCATION COORDS ERROR:", error)
+      throw new Error(`${error.message}`)
+   };
 }
+

@@ -14,16 +14,27 @@ import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthProvider } from './src/services/auth/auth.context';
 import { StripeProvider } from '@stripe/stripe-react-native';
+import {
+  FIREBASE_KEY,
+  AUTH_DOMAIN,
+  PROJECT_ID,
+  STORAGE_BUCKET,
+  MESSAGING_SENDER_ID,
+  API_ID
+} from "@env";
+import Toast from 'react-native-toast-message';
+import React from 'react';
+import { CheckoutProvider } from './src/services/checkout/checkoutcontext';
 
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyDNCfEO2K9sR_tjfxegQ_TUX2FcxVOAyvg",
-  authDomain: "go-meals-1b235.firebaseapp.com",
-  projectId: "go-meals-1b235",
-  storageBucket: "go-meals-1b235.appspot.com",
-  messagingSenderId: "131596693364",
-  appId: "1:131596693364:web:55f6d42e76727e1faf0621"
+  apiKey: FIREBASE_KEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: API_ID
 };
 
 if (!getApps().length) {
@@ -46,21 +57,24 @@ export default function App() {
 
   return <>
     <AuthProvider>
-    <StripeProvider
-      publishableKey="pk_test_51OdwoJBySQJTpPuJ8HYygjmh2MXFCipWXvhUihOkujmDQjKUNOoOwx0CEcxLqGXCmPjSDrrxewbXY10afqX4kV2U00rTU1RgkO"
-      urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
-      merchantIdentifier="merchant.com.{{YOUR_APP_NAME}}" // required for Apple Pay
-    >
-      <LocationProvider>
-        <FavoriteProvider>
-          <ThemeProvider theme={theme}>
-            <SafeArea >
-              <Navigator />
-            </SafeArea>
-          </ThemeProvider>
-          <StatusBar style="auto" />
-        </FavoriteProvider>
-      </LocationProvider>
+      <StripeProvider
+        publishableKey="pk_test_51OdwoJBySQJTpPuJ8HYygjmh2MXFCipWXvhUihOkujmDQjKUNOoOwx0CEcxLqGXCmPjSDrrxewbXY10afqX4kV2U00rTU1RgkO"
+        urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
+        merchantIdentifier="merchant.com.{{YOUR_APP_NAME}}" // required for Apple Pay
+      >
+        <CheckoutProvider>
+          <LocationProvider>
+            <FavoriteProvider>
+              <ThemeProvider theme={theme}>
+                <SafeArea >
+                  <Navigator />
+                  <Toast />
+                </SafeArea>
+              </ThemeProvider>
+              <StatusBar style="auto" />
+            </FavoriteProvider>
+          </LocationProvider>
+        </CheckoutProvider>
       </StripeProvider>
     </AuthProvider>
   </>;

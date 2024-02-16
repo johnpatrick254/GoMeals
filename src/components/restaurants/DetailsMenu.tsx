@@ -1,10 +1,23 @@
 import { NavigationProp } from "@react-navigation/native";
 import { Avatar, Icon, ListItem } from '@rneui/themed';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Text } from "react-native-paper";
 import { ScrollView } from "react-native";
+import { CartButton } from "../account/account.styles";
+import { checkoutContext } from "../../services/checkout/checkoutcontext";
+import React from "react";
+import Toast from "react-native-toast-message";
 
-export const DetailsMenu: React.FC = () => {
+export const DetailsMenu: React.FC<{ navigation: NavigationProp<any, any>, rest }> = ({ navigation, rest }) => {
+    const { addCard } = useContext(checkoutContext)
+    const onsubmit = (item: string, price: number) => {
+        addCard({ item: item, price: price }, rest);
+        Toast.show({
+            type: 'success',
+            text1: 'Added to Cart Successfully',
+          });
+    }
+
     const [expanded, setExpanded] = useState(false);
     const [expandedDinner, setDinnerExpanded] = useState(false);
     const [expandedLunch, setLunchExpanded] = useState(false);
@@ -34,13 +47,21 @@ export const DetailsMenu: React.FC = () => {
                 {breakFirst.map((l, i) => (
                     <ListItem key={i}
                         style={{ paddingLeft: 45 }}
-
                     >
 
 
                         <Text>${l.price}</Text>
                         <Text>{l.name}</Text>
-
+                        <CartButton
+                            icon="cart-plus"
+                            color="black"
+                            mode="contained-tonal"
+                            compact={true}
+                            onPress={() => onsubmit(l.name, l.price)}
+                        >
+                            Add
+                          
+                        </CartButton>
                     </ListItem>
                 ))}
             </ListItem.Accordion>
@@ -62,13 +83,21 @@ export const DetailsMenu: React.FC = () => {
                 {lunch.map((l, i) => (
                     <ListItem key={i}
                         style={{ paddingLeft: 45 }}
-
                     >
 
 
                         <Text>${l.price}</Text>
                         <Text>{l.name}</Text>
-
+                        <CartButton
+                            icon="cart-plus"
+                            color="black"
+                            mode="contained-tonal"
+                            compact={true}
+                            onPress={() => onsubmit(l.name, l.price)}
+                        >
+                            Add
+                          
+                        </CartButton>
                     </ListItem>
                 ))}
             </ListItem.Accordion>
@@ -91,13 +120,20 @@ export const DetailsMenu: React.FC = () => {
                 {dinner.map((l, i) => (
                     <ListItem key={i}
                         style={{ paddingLeft: 45 }}
-
                     >
 
 
                         <Text>${l.price}</Text>
                         <Text>{l.name}</Text>
-
+                        <CartButton
+                            icon="cart-plus"
+                            color="black"
+                            mode="contained-tonal"
+                            onPress={() => onsubmit(l.name, l.price)}
+                            compact={true}
+                        >
+                            Add
+                        </CartButton>
                     </ListItem>
                 ))}
             </ListItem.Accordion>

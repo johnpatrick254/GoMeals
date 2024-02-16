@@ -10,6 +10,7 @@ import { RestaurantCardSkeleton } from '../components/skeleton/RestaurantCard.sk
 import { FavoriteBar } from '../components/restaurants/FavouritesBar';
 import { FavoriteContext } from '../services/favourites/favourite.context';
 import { FadeInView } from '../components/shared/FadeInView';
+import { Text } from 'react-native-paper';
 export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }> = ({ navigation }) => {
   const { keyword, setKeyWord, isLoading, restaurants } = useContext(LocationContext)
   const { favorites } = useContext(FavoriteContext)
@@ -42,7 +43,10 @@ export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }
         </>
 
         :
-        <FlatList
+       ( 
+        (restaurants?.length > 0) 
+       ?
+       <FlatList
           data={restaurants}
           renderItem={(item) =>
             <FadeInView>
@@ -61,7 +65,13 @@ export const RestaurantScreen: React.FC<{ navigation: NavigationProp<any, any> }
           }
           contentContainerStyle={{ padding: 4 }}
           keyExtractor={item => item.name}
-        />}
+        />
+        :
+        <Text>No restaurants found for {searchQuery}</Text>
+        
+        )
+        
+        }
     </SafeAreaView>
   )
 }
