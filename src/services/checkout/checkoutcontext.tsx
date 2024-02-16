@@ -26,7 +26,7 @@ export const CheckoutProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
         }
     }
-    const sum = cart.length > 0 ? (cart.length == 1 ? cart[0].price:cart.reduce((a, b) => a.price + b.price) ): 1;
+    const sum = cart.length > 0 ? (cart.length == 1 ? cart[0].price:cart.reduce((a, b) => +a.price + +b.price) ): 1;
 
     const clear = () => {
         setCart([]);

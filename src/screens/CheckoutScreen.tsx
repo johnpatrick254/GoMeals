@@ -24,6 +24,7 @@ export const CheckoutScreen = ({ navigation }) => {
   const { cart, restaurant, clearCart, sum } = useContext(checkoutContext);
   const [paying, setPaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [newSheet, setNewSheet] = useState(false);
   
   const initializePaymentSheet = async () => {
     const {
@@ -47,8 +48,11 @@ export const CheckoutScreen = ({ navigation }) => {
     }
   };
   useEffect(() => { 
-    initializePaymentSheet().then(()=> setIsLoading(false) );
-  }, []);
+    setIsLoading(true);
+    initializePaymentSheet().finally(()=>{
+      setIsLoading(false);
+    } );
+  }, [newSheet]);
   const onPay = async () => {
     setIsLoading(true);
     setPaying(true)
@@ -61,9 +65,11 @@ export const CheckoutScreen = ({ navigation }) => {
       Alert.alert(`Error code: ${error.code}`, error.message);
       setPaying(false)
       setIsLoading(false);
+      setNewSheet(!newSheet);
     } else {
       setPaying(false)
       setIsLoading(false);
+      setNewSheet(!newSheet);
       Alert.alert('Success', 'Your order is confirmed!');
     }
   };
