@@ -7,7 +7,6 @@ import { NavigationProp,useFocusEffect } from "@react-navigation/native";
 import { Avatar, Button, List } from 'react-native-paper'
 import styled from 'styled-components'
 import { colors } from '../utils/styles/colors'
-import { FadeInView } from '../components/shared/FadeInView'
 import { TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
@@ -38,7 +37,6 @@ const SettingScreen: React.FC<{ navigation: NavigationProp<any, any> }> = ({ nav
 
   return (
     <SafeAreaView>
-      <FadeInView>
         <AvatarContainer>
           <TouchableOpacity onPress={() => navigation.navigate("camera")}>
             {
@@ -68,7 +66,6 @@ const SettingScreen: React.FC<{ navigation: NavigationProp<any, any> }> = ({ nav
           />
 
         </List.Section>
-      </FadeInView>
     </SafeAreaView>
   )
 }

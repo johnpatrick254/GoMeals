@@ -2,6 +2,7 @@
 import SkeletonLoading from 'react-native-skeleton-loading'
 import { View } from "react-native";
 import { RestaurantCard } from "../restaurants/RestaurantInfo";
+import React from 'react';
 export const RestaurantCardSkeleton: React.FC = ()=> {
   return <>
     <RestaurantCard>
