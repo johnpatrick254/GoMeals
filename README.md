@@ -1,4 +1,3 @@
-```markdown
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
@@ -23,7 +22,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 SW WEB APP ASSIGNMENT <a name="about-project"></a>
+# 🍕 GoMeals <a name="about-project"></a>
 
 **Gomeals** is a React Native food ordering app built with TypeScript and Expo. It integrates Firebase for authentication, Context API for state management, Stripe for payments, and Google Maps for mapping services. The backend is handled by Firebase Functions.
 
@@ -71,7 +70,7 @@ Clone this repository to your desired folder:
 
 ```sh
 cd <desired folder to contain project>
-git clone <project_git_url>
+git clone <[project_git_url](https://github.com/johnpatrick254/GoMeals)>
 cd <project_folder>
 ```
 
