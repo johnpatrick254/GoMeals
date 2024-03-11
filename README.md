@@ -70,7 +70,7 @@ Clone this repository to your desired folder:
 
 ```sh
 cd <desired folder to contain project>
-git clone <[project_git_url](https://github.com/johnpatrick254/GoMeals)>
+git clone <https://github.com/johnpatrick254/GoMeals>
 cd <project_folder>
 ```
 
