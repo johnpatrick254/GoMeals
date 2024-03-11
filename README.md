@@ -49,7 +49,7 @@
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo <a name="[live-demo](https://expo.dev/artifacts/eas/x88AE1oikhXNs8uVfcGLzP.apk)"></a>
-
+- [Live Demo]([Download Apk](https://expo.dev/artifacts/eas/x88AE1oikhXNs8uVfcGLzP.apk))
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 💻 Getting Started <a name="getting-started"></a>
