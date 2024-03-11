@@ -1,38 +1,4 @@
-<a name="readme-top"></a>
-
-<!--
-HOW TO USE:
-This is an example of how you may give instructions on setting up your project locally.
-
-Modify this file to match your project and remove sections that don't apply.
-
-REQUIRED SECTIONS:
-- Table of Contents
-- About the Project
-  - Built With
-  - Live Demo
-- Getting Started
-- Authors
-- Future Features
-- Contributing
-- Show your support
-- Acknowledgements
-- License
-
-OPTIONAL SECTIONS:
-- FAQ
-
-After you're finished please remove all the comments and instructions!
--->
-
-<div align="center">
-  <!-- You are encouraged to replace this logo with your own! Otherwise you can also remove it. -->
-  <!-- <img src="murple_logo.png" alt="logo" width="140"  height="auto" /> -->
-  <br/>
-
-  <!-- <h3><b>Microverse README Template</b></h3> -->
-
-</div>
+```markdown
 
 <!-- TABLE OF CONTENTS -->
 
@@ -44,8 +10,8 @@ After you're finished please remove all the comments and instructions!
     - [Key Features](#key-features)
   - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
   - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
@@ -60,38 +26,33 @@ After you're finished please remove all the comments and instructions!
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 GoMeals <a name="about-project"></a>
+# 📖 SW WEB APP ASSIGNMENT <a name="about-project"></a>
 
-<!-- > Describe your project in 1 or 2 sentences. -->
-
-**GoMeals** is a react-native app that allows users to order meals online from different vendors displayed on a map.
+**Gomeals** is a React Native food ordering app built with TypeScript and Expo. It integrates Firebase for authentication, Context API for state management, Stripe for payments, and Google Maps for mapping services. The backend is handled by Firebase Functions.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 - **React Native**
+- **TypeScript**
 - **Expo**
-- **Typescript**
-
-
-<!-- Features -->
+- **Firebase (Authentication and Functions)**
+- **Context API**
+- **Stripe**
+- **Google Maps**
 
 ### Key Features <a name="key-features"></a>
-
-<!-- > Describe between 1-3 key features of the application. -->
-
-- **View Food Vendors on a map**
-- **Order Food from different vendors**
-- **Manage Orders**
+- **View and Search for Restaurants**
+- **Mapping Services with Google Maps**
+- **Authentication with Firebase**
+- **Payment Integration with Stripe**
+- **Add favourites**
+- **Camera Module**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LIVE DEMO -->
 
-## 🚀 Live Demo <a name="live-demo"></a>
-
-<!-- > Add a link to your deployed project. -->
-
-- [Live Demo](coming soon)
+## 🚀 Live Demo <a name="[live-demo](https://expo.dev/artifacts/eas/x88AE1oikhXNs8uVfcGLzP.apk)"></a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -99,44 +60,41 @@ After you're finished please remove all the comments and instructions!
 
 ### Prerequisites
 
-In order to run this project you need:
+In order to run this project, you need:
 
 - Visual Studio Code
-- Expo Mobile Client
-- Git
+- Node.js
+- Expo CLI
+- Firebase account
+- Stripe account
 
 ### Setup
 
 Clone this repository to your desired folder:
 
-Example commands:
-
 ```sh
-  cd <desired folder to contain project>
-  git clone git clone https://github.com/johnpatrick254/GoMeals.git
-  cd GoMeals
+cd <desired folder to contain project>
+git clone <project_git_url>
+cd <project_folder>
 ```
 
 ### Install
 
-Install this project with:
+Install project dependencies:
 
 ```sh
-cd GoMeals
 npm install
 ```
 
 ### Usage
 
-To run the project, use:
+Start the Expo development server:
 
 ```sh
-cd GoMeals
-npm run andorid
-npm run ios
-npm run web
+expo start
 ```
 
+<!-- Add any additional instructions here, such as setting up Firebase credentials, etc. -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -144,14 +102,13 @@ npm run web
 
 ## 👥 Authors <a name="authors"></a>
 
-<!-- > Mention all of the collaborators of this project. -->
+👤 **YOUR_NAME**
 
-👤 **JOHN PATRICK**
+- GitHub: [@github_username](https://github.com/github_username)
+- Twitter: [@twitter_handle](https://twitter.com/twitter_handle)
+- LinkedIn: [linkedin_profile](https://linkedin.com/in/linkedin_profile)
 
-- GitHub: [@johnpatrick254](https://github.com/johnpatrick254)
-- Bitbucket: [@johnpat1](https://bitbucket.org/johnpat1/workspace/overview/)
-- Twitter: [@jpattrick538](https://twitter.com/jpattrick538_)
-- LinkedIn: [john-patrick-254-ke](https://www.linkedin.com/in/john-patrick-254ke/)
+<!-- Add additional authors as needed -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -159,9 +116,7 @@ npm run web
 
 ## 🔭 Future Features <a name="future-features"></a>
 
- <!-- Describe 1 - 3 features you will add to the project. -->
-
-- **More modules**
+- **Add more features...**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -171,15 +126,13 @@ npm run web
 
 Contributions, issues, and feature requests are welcome!
 
-<!-- Feel free to check the [issues page](../../issues/). -->
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- SUPPORT -->
 
 ## ⭐️ Show your support <a name="support"></a>
 
-Always leave a ⭐️ if you like this project and any of my other projects.
+If you found this project useful, please consider giving it a star on GitHub!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -188,8 +141,6 @@ Always leave a ⭐️ if you like this project and any of my other projects.
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
 <!-- > Give credit to everyone who inspired your codebase. -->
-
-Passing my sincere gratitude to Cynthia from Behance for the design template.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -216,3 +167,6 @@ Passing my sincere gratitude to Cynthia from Behance for the design template.
 This project is [MIT](./MIT.md) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+```
+
+Please replace placeholders like `YOUR_NAME`, `project_git_url`, and `twitter_handle` with appropriate information for your project. Additionally, provide live demo links and any other relevant details as needed.
