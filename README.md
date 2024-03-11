@@ -70,7 +70,7 @@ Clone this repository to your desired folder:
 
 ```sh
 cd <desired folder to contain project>
-git clone <https://github.com/johnpatrick254/GoMeals>
+git clone https://github.com/johnpatrick254/GoMeals
 cd <project_folder>
 ```
 
@@ -98,11 +98,12 @@ expo start
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **YOUR_NAME**
+👤 **JOHN PATRICK**
 
-- GitHub: [@github_username](https://github.com/github_username)
-- Twitter: [@twitter_handle](https://twitter.com/twitter_handle)
-- LinkedIn: [linkedin_profile](https://linkedin.com/in/linkedin_profile)
+- GitHub: [@johnpatrick254](https://github.com/johnpatrick254)
+- Bitbucket: [@johnpat1](https://bitbucket.org/johnpat1/workspace/overview/)
+- Twitter: [@jpattrick538](https://twitter.com/jpattrick538_)
+- LinkedIn: [john-patrick-254-ke](https://www.linkedin.com/in/john-patrick-254ke/)
 
 <!-- Add additional authors as needed -->
 
@@ -164,5 +165,3 @@ This project is [MIT](./MIT.md) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 ```
-
-Please replace placeholders like `YOUR_NAME`, `project_git_url`, and `twitter_handle` with appropriate information for your project. Additionally, provide live demo links and any other relevant details as needed.
