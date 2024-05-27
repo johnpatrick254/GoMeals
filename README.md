@@ -55,7 +55,8 @@
  <br>
  <img src="./assets/20240527_115508486.png" width="100%" height="500">
  <br>
-  <br>
+<br>
+
 ### Key Features <a name="key-features"></a>
 - **View and Search for Restaurants**
 - **Mapping Services with Google Maps**
